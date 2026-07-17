@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import '../style/home.scss';   
 import { useInterview} from '../hooks/useInterview.js';
 import { useNavigate } from 'react-router';  
+import profile_logo from "../../../../assets/account-circle-fill.png"
+import { useAuth } from "../../auth/hooks/useAuth"
 
 const Home = () => {
 
@@ -9,12 +11,19 @@ const Home = () => {
     const [jobDescription, setJobDescription] = useState('')
     const [selfDescription, setSelfDescription] = useState('')
     const resumeInputRef = useRef(null)
+    const { handleLogout } = useAuth()
+    const [showLogout, setShowLogout] = useState(false)
 
     const navigate = useNavigate()
     const handleGenerateReport = async () => {
         const resumeFile = resumeInputRef.current.files[0]
         const data = await generateReport({ jobDescription, selfDescription, resumeFile})
         navigate(`/interview/${data._id}`)
+    }
+
+    const handleLogoutButton = async () => {
+        await handleLogout()
+        navigate("/login")
     }
 
     if(loading) {
@@ -31,9 +40,24 @@ const Home = () => {
                 <div className="name">
                     StackAlign
                 </div>
+                <div 
+                    className="profile"
+                    onClick={()=> setShowLogout(!showLogout)}
+                >
+                    <img id='profile-image' src={profile_logo} alt="Profile"/>
+                    <p className='profile-tooltip'>Profile</p>
+                    { showLogout && (
+                        <button 
+                        className='logout-btn'
+                        onClick={handleLogoutButton}
+                        >Logout</button>
+                        )
+                    }
+                </div>
             </header>
             <div className="interview-input-group">
                 <div className="left">
+                    <label id='jd' htmlFor="jobdescription">Job Description</label>
                     <textarea 
                     onChange={(e) => {setJobDescription(e.target.value)}}
                     name="jobdescription" 
