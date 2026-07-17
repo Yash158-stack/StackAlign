@@ -9,10 +9,11 @@ main {
         display: flex;
         flex-direction: column;
         gap:0.75rem;
-        min-width: 350px;
-        height: 480px;
+        min-width: 23rem;
+        height: 28rem;
         border-radius: 0.75rem;
-
+        background-color: #1e293b;
+        padding: 2rem;
     }
 
 
@@ -20,6 +21,10 @@ form {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+}
+
+h1 {
+    align-self: center;
 }
 
     .input-group {
