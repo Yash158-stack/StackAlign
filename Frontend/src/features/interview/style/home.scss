@@ -17,13 +17,62 @@ $text-secondary: #94a3b8;
   justify-content: center;
   padding: 2rem;
   font-family: 'Inter', system-ui, sans-serif;
+  position: relative;
 
   .name-header {
     width: 100%;
     max-width: 1100px;       
     display: flex;
     justify-content: center;
+
+    .profile {
+      position: absolute;
+      right: 4rem;
+      top: 2.75rem;
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 50%;
+      background-color: whitesmoke;
+    }
+      .profile-tooltip {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.25s;
+        padding: 0.2rem 0.3rem 0.2rem 0.3rem  ;
+      }
+      
+      .profile:active .profile-tooltip{
+        opacity: 0;
+      }
+        .logout-btn {
+          font-size: 1rem;
+          position: absolute;
+          top: 3.5rem;
+          left: -0.7rem;
+          padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+          z-index: 10;
+      }
+       .profile:hover .profile-tooltip{
+        opacity: 1;
+        visibility: visible;
+        background-color: rgb(159, 156, 167);
+        color: black;
+        width:fit-content;
+        height: fit-content;
+        border-radius: 0.2rem;
+        font-size: 1rem; 
+        top: 3.5rem;
+      }
+
+      #profile-image {
+        width: 3.2rem ;
+        height: 3.2rem;
+        cursor: pointer;
+      }
   }
+
+  
 
   .name {
     font-size: 3.2rem;   
@@ -63,6 +112,15 @@ $text-secondary: #94a3b8;
     margin-bottom: 3rem;
     background-color: transparent;
     
+     #jd {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: $text-primary;
+      letter-spacing: 0.02em;
+      margin-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
     .left {
       flex: 1;
       background-color: $bg-card;
@@ -106,9 +164,7 @@ $text-secondary: #94a3b8;
       background-color: $bg-input;
       border: 1px dashed $border-color;
       border-radius: 8px;
-      padding: 4rem;
-      padding-top: 2rem;
-      padding-bottom: 4rem;
+      padding: 0.6rem 3rem 2.5rem 2rem;
       color: $text-secondary;
       cursor: pointer;
       font-size: 0.9rem;
