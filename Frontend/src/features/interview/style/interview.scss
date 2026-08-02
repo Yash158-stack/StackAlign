@@ -70,6 +70,8 @@ $text-secondary: #94a3b8;
 .right-panel {
   grid-area: right-panel;
   max-height: calc(100vh - 4rem); 
+  display: flex;
+  flex-direction: column;
 }
 
 .panel-title {
@@ -260,7 +262,24 @@ $text-secondary: #94a3b8;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #334155; 
+    border-radius: 999px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
 }
+
 
 .gap-pill {
   display: inline-flex;
@@ -274,7 +293,7 @@ $text-secondary: #94a3b8;
 }
 
 .stats-card {
-  margin-top: auto;
+  margin-top: 1.5rem; 
   background: rgba(15, 23, 42, 0.95);
   border: 1px solid rgba(51, 65, 85, 0.8);
   border-radius: 16px;
