@@ -2,28 +2,40 @@ main {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    gap: 20rem;
+
+    .name {
+        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+        font-size: 13.2rem;
+        font-weight: bold;
+        width: 4.5rem;
+        color: #2abfe4;
+    }
 
     .form-container {
         display: flex;
         flex-direction: column;
         gap:0.75rem;
-        min-width: 23rem;
-        height: 28rem;
+        min-width: 28rem;
+        height: 35rem;
         border-radius: 0.75rem;
         background-color: #1e293b;
-        padding: 2rem;
+        padding: 2.5rem;
     }
 
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 2rem;
 }
 
-h1 {
+.heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom:2rem;
     align-self: center;
 }
 
@@ -41,8 +53,11 @@ h1 {
             height: 2.3rem;
         }
     }
+    .link {
+        margin-top: 1rem;
+    }
     a{
-        color: #db1d56;
+        color: #2abfe4;
         text-decoration: none;
     }
 
