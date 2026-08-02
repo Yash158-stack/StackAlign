@@ -139,7 +139,3 @@ The frontend dev server runs on `http://localhost:5173` (the backend's CORS conf
 2. The backend parses the resume and sends the combined context to Gemini using a strict, Zod-defined schema.
 3. Gemini returns a structured interview report (match score, questions, skill gaps, prep plan), which is validated and stored in MongoDB.
 4. Users can optionally request an AI-generated, tailored resume, which is produced as HTML by Gemini and converted to a PDF with Puppeteer.
-
-## License
-
-ISC
