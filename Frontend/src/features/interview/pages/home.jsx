@@ -41,18 +41,18 @@ const Home = () => {
                     StackAlign
                 </div>
                 <div 
-                    className="profile"
+                    className={`profile ${showLogout ? 'active' : ''}`}
                     onClick={()=> setShowLogout(!showLogout)}
                 >
                     <img id='profile-image' src={profile_logo} alt="Profile"/>
                     <p className='profile-tooltip'>Profile</p>
-                    { showLogout && (
-                        <button 
+                    <button 
                         className='logout-btn'
-                        onClick={handleLogoutButton}
-                        >Logout</button>
-                        )
-                    }
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleLogoutButton();
+                        }}
+                    >Logout</button>
                 </div>
             </header>
             <div className="interview-input-group">
