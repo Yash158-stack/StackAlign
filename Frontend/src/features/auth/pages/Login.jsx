@@ -24,8 +24,11 @@ const Login = () => {
 
     return (
         <main>
+            <div className="name">
+                Stack Align
+            </div>
             <div className="form-container">
-                <h1>Login</h1>
+                <p className='heading'>Login</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
@@ -46,7 +49,7 @@ const Login = () => {
                     </div>
                     <button className='button primary-button'>Login</button> 
                 </form>
-                <p>Create an account? <Link className='link' to={"/register"}>Register</Link> </p>
+                <p className='link'>Create an account? <Link className='link' to={"/register"}>Register</Link> </p>
             </div>
         </main>
     )

@@ -23,34 +23,37 @@ const Register = () => {
 
     return (
         <main>
+            <div className="name">
+                Stack Align
+            </div>
             <div className="form-container">
-                <h1>Register</h1>
+                <p className='heading'>Register</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <label htmlFor='username'>Username </label>
                         <input 
                         onChange={(e) => {setUsername(e.target.value)}}
-                        type='text' id='username' name='username' placeholder='Enter username' />
+                        type='text' id='username' name='username' placeholder='Enter username' required/>
                     </div>
                     <div className="input-group">
                         <label htmlFor='email'>Email </label>
                         <input 
                         onChange={(e) => {setEmail(e.target.value)}}
-                        type='text' id='email' name='email' placeholder='Enter email address' />
+                        type='text' id='email' name='email' placeholder='Enter email address' required/>
                     </div>
                     <div className="input-group">
                         <label htmlFor='password'>Password </label>
                         <input 
                         onChange={(e) => {setPassword(e.target.value)}}
-                        type='text' id='password' placeholder='Enter password'/>
+                        type='text' id='password' placeholder='Enter password' required/>
                     </div>
                     <button className='button primary-button'>Register</button> 
                 </form>
-                <p>Already have an account? <Link className='link' to={"/login"}>Login</Link> </p>
+                <p className='link'>Already have an account? <Link className='link' to={"/login"}>Login</Link> </p>
             </div>
         </main>
     )
 }
 
-export default Register
+export default Register;
