@@ -43,18 +43,24 @@ export const useInterview = () => {
     }
 
     const getReports = async () => {
-        setLoading(true)
-        let response = null
-        try {
-            response = await getAllInterviewReports()
-            setReports(response.interviewReports)
-        } catch (err) {
-            console.log(err)
-        } finally {
-            setLoading(false)
-        }
-        return response.interviewReports
+    setLoading(true)
+
+    try {
+        const response = await getAllInterviewReports()
+
+        setReports(response?.interviewReports || [])
+
+        return response?.interviewReports || []
+    } catch (err) {
+        console.log(err)
+
+        setReports([])
+
+        return []
+    } finally {
+        setLoading(false)
     }
+}
 
     const getResumePdf = async (interviewReportId) => {
         setLoading(true)
