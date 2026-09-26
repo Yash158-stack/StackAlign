@@ -15,17 +15,29 @@ export const useInterview = () => {
     const {loading, setLoading, report, setReport, reports, setReports} = context
 
     const generateReport = async ({jobDescription, selfDescription, resumeFile}) => {
-        setLoading(true)
-        let response = null
-        try {
-            response = await generateInterviewReport({jobDescription, selfDescription, resumeFile})
-            setReport(response.interviewReport)
-        }catch (err) {
-            console.log(err)
-        } finally {
-            setLoading(false)
+    setLoading(true)
+
+    try {
+        const response = await generateInterviewReport({
+            jobDescription,
+            selfDescription,
+            resumeFile
+        })
+
+        if (!response?.interviewReport) {
+            return null
         }
+
+        setReport(response.interviewReport)
         return response.interviewReport
+
+    } catch (err) {
+        console.log(err)
+        return null
+
+    } finally {
+        setLoading(false)
+    }
     }
 
     const getReportById = async (interviewId) => {
