@@ -7,28 +7,49 @@ const interviewReportModel = require("../models/interviewReport.model")
 /**
  * @description Controller to generate interview report on the basis of user self description, resume pdf and job description
  */
-async function generateInterviewReportController(req ,res) {
-    const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
-    const { selfDescription, jobDescription} = req.body
+async function generateInterviewReportController(req, res) {
+    try {
+        const resumeContent = await (
+            new pdfParse.PDFParse(
+                Uint8Array.from(req.file.buffer)
+            )
+        ).getText()
 
-    const interviewReportByAi = await generateInterviewReport({
-        resume: resumeContent.text,
-        selfDescription,
-        jobDescription
-    })
+        const { selfDescription, jobDescription } = req.body
 
-    const interviewReport = await interviewReportModel.create({
-        user: req.user.id,
-        resume: resumeContent.text,
-        selfDescription,
-        jobDescription,
-        ...interviewReportByAi
-    })
+        const interviewReportByAi = await generateInterviewReport({
+            resume: resumeContent.text,
+            selfDescription,
+            jobDescription
+        })
 
-    res.status(201).json({
-        message: "Interview report generated successfully",
-        interviewReport
-    })
+        if (!interviewReportByAi) {
+            return res.status(500).json({
+                message: "Failed to generate interview report from AI"
+            })
+        }
+
+        const interviewReport = await interviewReportModel.create({
+            user: req.user.id,
+            resume: resumeContent.text,
+            selfDescription,
+            jobDescription,
+            ...interviewReportByAi
+        })
+
+        res.status(201).json({
+            message: "Interview report generated successfully",
+            interviewReport
+        })
+
+    } catch (error) {
+        console.error("INTERVIEW REPORT ERROR:", error)
+
+        res.status(500).json({
+            message: "Failed to generate interview report",
+            error: error.message
+        })
+    }
 }
 
 async function getInterviewReportIdController(req, res) {
